@@ -43,4 +43,11 @@ class UserController extends Controller
 
         return response()->json(['message' => 'Berhasil logout']);
     }
+
+    public function refresh()
+    {
+        $auth = $this->userService->refreshToken();
+
+        return new UserResource($auth, 'Berhasil merefresh token');
+    }
 }

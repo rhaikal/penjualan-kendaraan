@@ -33,7 +33,7 @@ class UserService
 
         if($remember) {
             $auth['exp'] = 720;
-            auth()->factory()->setTTL(720);
+            auth()->factory()->setTTL($auth['exp']);
         }
 
         $auth['token'] = auth()->attempt($credentials);
@@ -47,5 +47,17 @@ class UserService
     public function logout()
     {
         auth()->logout();
+    }
+
+    public function refreshToken()
+    {
+        $auth['user'] = auth()->user();
+
+        $auth['exp'] = 720;
+        auth()->factory()->setTTL($auth['exp']);
+
+        $auth['token'] = auth()->refresh();
+
+        return $auth;
     }
 }
