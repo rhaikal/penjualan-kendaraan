@@ -14,6 +14,11 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
+    public function getAuthUser()
+    {
+        return ['user' => auth()->user()];
+    }
+
     public function getAuthAndRegister(array $data)
     {
         $data['password'] = bcrypt($data['password']);

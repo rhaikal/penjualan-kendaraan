@@ -14,7 +14,7 @@ class UserResource extends JsonResource
     {
         parent::__construct($authorization['user']);
         $this->message = $message;
-        $this->token = $authorization['token'];
+        $this->token = $authorization['token'] ?? null;
         $this->exp = $authorization['exp'] ?? 60; // in minutes
     }
 
@@ -34,11 +34,13 @@ class UserResource extends JsonResource
                     'name' => $this->name,
                     'email' => $this->email
                 ],
-                'authorization' => [
+                $this->mergeWhen($this->token, [
+                    'authorization' => [
                     'token' => $this->token,
                     'type' => 'Bearer',
                     'expired' => $this->exp * 60 // in seconds
-                ]
+                    ]
+                ])
             ]
         ];
     }

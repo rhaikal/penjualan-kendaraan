@@ -37,6 +37,11 @@ class UserController extends Controller
         return new UserResource($auth, 'Berhasil login');
     }
 
+    public function data()
+    {
+        return new UserResource($this->userService->getAuthUser(), 'Berhasil mendapatkan data user');
+    }
+
     public function logout()
     {
         $this->userService->logout();
