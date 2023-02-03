@@ -15,15 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(UserController::class)->prefix('auth')->group(function() {
-    Route::post('register', 'register');
-    Route::post('login', 'login');
+Route::controller(UserController::class)->prefix('auth')->name('auth.')->group(function() {
+    Route::post('register', 'register')->name('register');
+    Route::post('login', 'login')->name('login');
 });
 
 Route::middleware('auth:api')->group(function() {
-    Route::controller(UserController::class)->prefix('auth')->group(function() {
-        Route::get('data', 'data');
-        Route::post('logout', 'logout');
-        Route::post('refresh', 'refresh');
+    Route::controller(UserController::class)->prefix('auth')->name('auth.')->group(function() {
+        Route::get('data', 'data')->name('data');
+        Route::post('logout', 'logout')->name('logout');
+        Route::post('refresh', 'refresh')->name('refresh');
     });
 });
