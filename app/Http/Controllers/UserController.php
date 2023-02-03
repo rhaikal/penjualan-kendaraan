@@ -36,4 +36,11 @@ class UserController extends Controller
 
         return new UserResource($auth, 'Berhasil login');
     }
+
+    public function logout()
+    {
+        $this->userService->logout();
+
+        return response()->json(['message' => 'Berhasil logout']);
+    }
 }

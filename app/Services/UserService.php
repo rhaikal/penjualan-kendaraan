@@ -43,4 +43,9 @@ class UserService
 
         return $auth;
     }
+
+    public function logout()
+    {
+        auth()->logout();
+    }
 }
