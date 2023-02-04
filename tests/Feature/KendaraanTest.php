@@ -56,6 +56,22 @@ class KendaraanTest extends TestCase
     }
 
     /**
+     * A show vehicle feature test.
+     *
+     * @return void
+     */
+    public function test_can_show_vehicle()
+    {
+        $kendaraan = Kendaraan::latest()->first();
+
+        $user = User::latest()->first();
+        $response = $this->actingAs($user)->withHeaders($this->headers)->getJson(route('kendaraan.show', $kendaraan));
+        $response->assertStatus(200);
+        $response->assertJson(['message' => 'Berhasil mendapatkan data kendaraan']);
+
+    }
+
+    /**
      * A update vehicle feature test.
      *
      * @return void

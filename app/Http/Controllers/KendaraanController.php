@@ -27,6 +27,11 @@ class KendaraanController extends Controller
         return new KendaraanResource($kendaraan, 'Berhasil menambahkan kendaraan baru');
     }
 
+    public function show(Kendaraan $kendaraan)
+    {
+        return new KendaraanResource($kendaraan, 'Berhasil mendapatkan data kendaraan');
+    }
+
     public function update(UpdateKendaraanRequest $request, Kendaraan $kendaraan)
     {
         $validatedData = $request->validated();
