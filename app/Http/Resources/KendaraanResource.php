@@ -42,6 +42,7 @@ class KendaraanResource extends JsonResource
             'tahun_keluaran' => $this->tahun_keluaran,
             'warna' => $this->warna,
             'stock' => $this->stock,
+            'harga' => $this->harga,
             'mesin' => $this->mesin,
         ];
 

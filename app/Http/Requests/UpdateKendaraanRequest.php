@@ -29,6 +29,7 @@ class UpdateKendaraanRequest extends FormRequest
             'model' => 'sometimes|required|string',
             'tahun_keluaran' => 'sometimes|required|numeric',
             'warna' => 'sometimes|required|string',
+            'harga' => 'sometimes|required|integer',
             'stock' => 'sometimes|required|integer'
         ];
 

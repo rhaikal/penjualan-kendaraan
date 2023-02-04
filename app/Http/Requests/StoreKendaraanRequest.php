@@ -30,6 +30,7 @@ class StoreKendaraanRequest extends FormRequest
             'model' => 'required|string',
             'tahun_keluaran' => 'required|numeric',
             'warna' => 'required|string',
+            'harga' => 'required|integer',
             'stock' => 'required|integer'
         ];
 

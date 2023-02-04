@@ -29,6 +29,10 @@ class KendaraanTest extends TestCase
             'stock' => rand(1, 100),
         ];
 
+        $data['harga'] = $data['jenis'] == 'mobil' ?
+            $this->faker->randomNumber(9, true): //min 100 million
+            $this->faker->randomNumber(8, true); // min  10 million
+
         if($data['jenis'] == 'mobil') {
             $additionalData = [
                 'kapasitas_penumpang' => rand(1, 8),
@@ -80,6 +84,14 @@ class KendaraanTest extends TestCase
         $kendaraan = Kendaraan::latest()->first();
 
         $data = [];
+
+        // case change price
+        if(rand(0, 1))
+            $data = array_merge($data, [
+                'harga' => $kendaraan->jenis == 'mobil' ?
+                    $this->faker->randomNumber(9, true): //min 100 million
+                    $this->faker->randomNumber(8, true)
+            ]);
 
         // case adding new stock
         if(rand(0, 1))
