@@ -2,9 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
+use App\Models\Kendaraan;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class KendaraanTest extends TestCase
 {
@@ -13,7 +14,7 @@ class KendaraanTest extends TestCase
     protected $headers = ['Accept' => 'application/json'];
 
     /**
-     * A create car feature test.
+     * A create vehicle feature test.
      *
      * @return void
      */
@@ -52,5 +53,55 @@ class KendaraanTest extends TestCase
         $response = $this->actingAs($user)->withHeaders($this->headers)->postJson(route('kendaraan.store'), $data);
         $response->assertStatus(201);
         $response->assertJson(['message' => 'Berhasil menambahkan kendaraan baru']);
+    }
+
+    /**
+     * A update vehicle feature test.
+     *
+     * @return void
+     */
+    public function test_can_update_vehicle()
+    {
+        $kendaraan = Kendaraan::latest()->first();
+
+        $data = [];
+
+        // case adding new stock
+        if(rand(0, 1))
+            $data = array_merge($data, ['stock' => $kendaraan->stock + rand(1, 25)]);
+
+        // case typo
+        if(rand(0, 1))
+            $data = array_merge($data, [
+                'merek' => $this->faker->company(),
+                'model' => $this->faker->word(),
+                'tahun_keluaran' => $this->faker->year(),
+                'warna' => $this->faker->colorName(),
+            ]);
+
+        // case wrong engine
+        if(rand(0, 1)) {
+            if($kendaraan->jenis == 'mobil') {
+                if($kendaraan->tipe == 'Elektrik') $additionalData['mesin'] = $this->faker->randomElement(['BEV', 'PHEV', 'HEV', 'FCEV']);
+                else $additionalData['mesin'] = $this->faker->randomElement(['ECE', 'ICE']);
+
+                $data = array_merge($data, $additionalData);
+            } else {
+                $additionalData = [
+                    'mesin' => $this->faker->randomElement(['DOHC', 'SOHC', 'OHV']),
+                    'tipe_suspensi' => $this->faker->randomElement(['Pararel Fork', 'Plunger Rear Suspension', 'Telescopic Fork', 'Swing Arm Rear Suspension']),
+                    'tipe_transmisi' => $this->faker->randomElement(['Manual', 'Semi Otomatis', 'Otomatis'])
+                ];
+
+                $data = array_merge($data, $additionalData);
+            }
+        }
+
+        if(!empty($data)) {
+            $user = User::latest()->first();
+            $response = $this->actingAs($user)->withHeaders($this->headers)->patchJson(route('kendaraan.update', $kendaraan), $data);
+            $response->assertStatus(200);
+            $response->assertJson(['message' => 'Berhasil mengubah data kendaraan']);
+        } else $this->test_can_update_vehicle();
     }
 }

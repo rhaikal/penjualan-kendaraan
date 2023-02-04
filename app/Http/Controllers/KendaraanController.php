@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kendaraan;
 use Illuminate\Http\Request;
 use App\Services\KendaraanService;
-use App\Http\Requests\StoreKendaraanRequest;
 use App\Http\Resources\KendaraanResource;
+use App\Http\Requests\StoreKendaraanRequest;
+use App\Http\Requests\UpdateKendaraanRequest;
 
 class KendaraanController extends Controller
 {
@@ -23,5 +25,14 @@ class KendaraanController extends Controller
         $kendaraan = $this->kendaraanService->createKendaraan($validatedData);
 
         return new KendaraanResource($kendaraan, 'Berhasil menambahkan kendaraan baru');
+    }
+
+    public function update(UpdateKendaraanRequest $request, Kendaraan $kendaraan)
+    {
+        $validatedData = $request->validated();
+
+        $this->kendaraanService->updateKendaraan($kendaraan, $validatedData);
+
+        return new KendaraanResource($kendaraan, 'Berhasil mengubah data kendaraan');
     }
 }

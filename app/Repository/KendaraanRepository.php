@@ -10,4 +10,9 @@ class KendaraanRepository
     {
         return Kendaraan::create($data);
     }
+
+    public function update(Kendaraan $kendaraan, array $data)
+    {
+        return $kendaraan->update($data);
+    }
 }

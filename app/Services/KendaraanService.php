@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Kendaraan;
 use App\Repository\KendaraanRepository;
 
 class KendaraanService
@@ -16,5 +17,10 @@ class KendaraanService
     public function createKendaraan(array $data)
     {
         return $this->kendaraanRepository->create($data);
+    }
+
+    public function updateKendaraan(Kendaraan $kendaraan, array $data)
+    {
+        return $this->kendaraanRepository->update($kendaraan, $data);
     }
 }
