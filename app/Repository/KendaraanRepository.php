@@ -6,6 +6,11 @@ use App\Models\Kendaraan;
 
 class KendaraanRepository
 {
+    public function paginate($paginate)
+    {
+        return Kendaraan::paginate($paginate);
+    }
+
     public function create(array $data)
     {
         return Kendaraan::create($data);

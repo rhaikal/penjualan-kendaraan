@@ -18,6 +18,13 @@ class KendaraanController extends Controller
         $this->kendaraanService = $kendaraanService;
     }
 
+    public function index()
+    {
+        $kendaraan = $this->kendaraanService->getKendaraan(10);
+
+        return KendaraanResource::collection($kendaraan);
+    }
+
     public function store(StoreKendaraanRequest $request)
     {
         $validatedData = $request->validated();

@@ -61,6 +61,18 @@ class KendaraanTest extends TestCase
     }
 
     /**
+     * A see all vehicle feature test.
+     *
+     * @return void
+     */
+    public function test_can_see_all_vehicle()
+    {
+        $user = User::latest()->first();
+        $response = $this->actingAs($user)->withHeaders($this->headers)->getJson(route('kendaraan.index'));
+        $response->assertStatus(200);
+    }
+
+    /**
      * A show vehicle feature test.
      *
      * @return void

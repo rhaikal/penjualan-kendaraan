@@ -23,18 +23,6 @@ class KendaraanResource extends JsonResource
      */
     public function toArray($request)
     {
-        $additionalData = null;
-        if($this->jenis == 'mobil')
-            $additionalData = [
-                'kapasitas_penumpang' => $this->kapasitas_penumpang,
-                'tipe' => $this->tipe
-            ];
-        else
-            $additionalData = [
-                'tipe_suspensi' => $this->tipe_suspensi,
-                'tipe_transmisi' => $this->tipe_transmisi
-            ];
-
         $data = [
             'jenis' => $this->jenis,
             'merek' => $this->merek,
@@ -43,16 +31,30 @@ class KendaraanResource extends JsonResource
             'warna' => $this->warna,
             'stock' => $this->stock,
             'harga' => $this->harga,
-            'mesin' => $this->mesin,
         ];
 
-        $data = array_merge($data, $additionalData);
+        if(request()->routeIs('kendaraan.index')) return $data;
+        else {
+            $additionalData['mesin'] = $this->mesin;
+            if($this->jenis == 'mobil')
+                $additionalData += [
+                    'kapasitas_penumpang' => $this->kapasitas_penumpang,
+                    'tipe' => $this->tipe
+                ];
+            else
+                $additionalData += [
+                    'tipe_suspensi' => $this->tipe_suspensi,
+                    'tipe_transmisi' => $this->tipe_transmisi
+                ];
 
-        return [
-            'message' => $this->message,
-            'data' => [
-                `kendaraan` => $data
-            ]
-        ];
+            $data = array_merge($data, $additionalData);
+
+            return [
+                'message' => $this->message,
+                'data' => [
+                    `kendaraan` => $data
+                ]
+            ];
+        }
     }
 }

@@ -14,6 +14,11 @@ class KendaraanService
         $this->kendaraanRepository = $kendaraanRepository;
     }
 
+    public function getKendaraan(int $paginate)
+    {
+        return $this->kendaraanRepository->paginate($paginate);
+    }
+
     public function createKendaraan(array $data)
     {
         return $this->kendaraanRepository->create($data);
