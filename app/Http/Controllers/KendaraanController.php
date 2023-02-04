@@ -40,4 +40,11 @@ class KendaraanController extends Controller
 
         return new KendaraanResource($kendaraan, 'Berhasil mengubah data kendaraan');
     }
+
+    public function delete(Kendaraan $kendaraan)
+    {
+        $this->kendaraanService->deleteKendaraan($kendaraan);
+
+        return response()->json(['message' => 'Berhasil menghapus kendaraan']);
+    }
 }

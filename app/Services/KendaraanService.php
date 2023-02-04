@@ -23,4 +23,9 @@ class KendaraanService
     {
         return $this->kendaraanRepository->update($kendaraan, $data);
     }
+
+    public function deleteKendaraan(Kendaraan $kendaraan)
+    {
+        return $this->kendaraanRepository->delete($kendaraan);
+    }
 }

@@ -68,7 +68,6 @@ class KendaraanTest extends TestCase
         $response = $this->actingAs($user)->withHeaders($this->headers)->getJson(route('kendaraan.show', $kendaraan));
         $response->assertStatus(200);
         $response->assertJson(['message' => 'Berhasil mendapatkan data kendaraan']);
-
     }
 
     /**
@@ -119,5 +118,20 @@ class KendaraanTest extends TestCase
             $response->assertStatus(200);
             $response->assertJson(['message' => 'Berhasil mengubah data kendaraan']);
         } else $this->test_can_update_vehicle();
+    }
+
+    /**
+     * A delete vehicle feature test.
+     *
+     * @return void
+     */
+    public function test_can_delete_vehicle()
+    {
+        $kendaraan = Kendaraan::latest()->first();
+
+        $user = User::latest()->first();
+        $response = $this->actingAs($user)->withHeaders($this->headers)->deleteJson(route('kendaraan.delete', $kendaraan));
+        $response->assertStatus(200);
+        $response->assertJson(['message' => 'Berhasil menghapus kendaraan']);
     }
 }

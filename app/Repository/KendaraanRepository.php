@@ -15,4 +15,9 @@ class KendaraanRepository
     {
         return $kendaraan->update($data);
     }
+
+    public function delete(Kendaraan $kendaraan)
+    {
+        return $kendaraan->delete($kendaraan);
+    }
 }
