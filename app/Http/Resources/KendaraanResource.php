@@ -31,8 +31,8 @@ class KendaraanResource extends JsonResource
             ];
         else
             $additionalData = [
-                'suspensi' => $this->suspensi,
-                'transmisi' => $this->transmisi
+                'tipe_suspensi' => $this->tipe_suspensi,
+                'tipe_transmisi' => $this->tipe_transmisi
             ];
 
         $data = [
@@ -42,6 +42,7 @@ class KendaraanResource extends JsonResource
             'tahun_keluaran' => $this->tahun_keluaran,
             'warna' => $this->warna,
             'stock' => $this->stock,
+            'mesin' => $this->mesin,
         ];
 
         $data = array_merge($data, $additionalData);
