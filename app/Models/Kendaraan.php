@@ -16,7 +16,7 @@ class Kendaraan extends Model
      */
    protected $fillable = [
         'jenis',
-        'merk',
+        'merek',
         'model',
         'tahun_keluaran',
         'warna',
