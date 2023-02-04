@@ -41,7 +41,7 @@ class KendaraanController extends Controller
         return new KendaraanResource($kendaraan, 'Berhasil mengubah data kendaraan');
     }
 
-    public function delete(Kendaraan $kendaraan)
+    public function destroy(Kendaraan $kendaraan)
     {
         $this->kendaraanService->deleteKendaraan($kendaraan);
 

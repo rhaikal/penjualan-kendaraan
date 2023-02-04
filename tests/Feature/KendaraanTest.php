@@ -26,6 +26,7 @@ class KendaraanTest extends TestCase
             'model' => $this->faker->word(),
             'tahun_keluaran' => $this->faker->year(),
             'warna' => $this->faker->colorName(),
+            'harga' => $this->faker->randomNumber(9, true), //min 100 million
             'stock' => rand(1, 100),
         ];
 
@@ -142,7 +143,7 @@ class KendaraanTest extends TestCase
         $kendaraan = Kendaraan::latest()->first();
 
         $user = User::latest()->first();
-        $response = $this->actingAs($user)->withHeaders($this->headers)->deleteJson(route('kendaraan.delete', $kendaraan));
+        $response = $this->actingAs($user)->withHeaders($this->headers)->deleteJson(route('kendaraan.destroy', $kendaraan));
         $response->assertStatus(200);
         $response->assertJson(['message' => 'Berhasil menghapus kendaraan']);
     }
