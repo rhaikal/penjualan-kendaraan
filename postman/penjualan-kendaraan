@@ -771,7 +771,7 @@
 								},
 								{
 									"key": "kendaraan[id]",
-									"value": "{id}",
+									"value": "63dfd0158587fe9df70dfab3",
 									"type": "text"
 								},
 								{
@@ -781,7 +781,7 @@
 								},
 								{
 									"key": "kendaraan[otr]",
-									"value": "On The Road",
+									"value": "Off The Road",
 									"type": "text"
 								},
 								{
@@ -955,16 +955,10 @@
 						"header": [],
 						"body": {
 							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "status",
-									"value": "selesai",
-									"type": "text"
-								}
-							]
+							"urlencoded": []
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/penjualan/63df8e80714e2ca23c0f8f93",
+							"raw": "http://127.0.0.1:8000/api/penjualan/{id}",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -976,7 +970,7 @@
 							"path": [
 								"api",
 								"penjualan",
-								"63df8e80714e2ca23c0f8f93"
+								"{id}"
 							]
 						}
 					},
