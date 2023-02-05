@@ -26,7 +26,6 @@ class KendaraanTest extends TestCase
             'model' => $this->faker->word(),
             'tahun_keluaran' => $this->faker->year(),
             'warna' => $this->faker->colorName(),
-            'harga' => $this->faker->randomNumber(9, true), //min 100 million
             'stock' => rand(1, 100),
         ];
 
