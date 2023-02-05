@@ -112,6 +112,11 @@ class PenjualanService
         return $this->penjualanRepository->update($penjualan, $data);
     }
 
+    public function deletePenjualan(Penjualan $penjualan)
+    {
+        return $this->penjualanRepository->delete($penjualan);
+    }
+
     public function percentageMultiplicationAssignment($number, $percentage)
     {
         return $number - $number * $percentage / 100;

@@ -116,4 +116,20 @@ class PenjualanTest extends TestCase
         $response->assertStatus(200);
         $response->assertJson(['message' => 'Berhasil mengubah penjualan']);
     }
+
+    /**
+     * A delete sale feature.
+     *
+     * @return void
+     */
+    public function test_can_delete_sale()
+    {
+        if(Penjualan::count() > 5) {
+            $penjualan = Penjualan::where('status', 'proses')->latest()->first();
+            $user = User::latest()->first();
+            $response = $this->withHeaders($this->headers)->actingAs($user)->deleteJson(route('penjualan.destroy', $penjualan));
+            $response->assertStatus(200);
+            $response->assertJson(['message' => 'Berhasil menghapus penjualan']);
+        } else $this->markTestSkipped('must have 5 or more sales');
+    }
 }

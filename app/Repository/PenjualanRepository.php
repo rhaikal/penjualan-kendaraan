@@ -20,4 +20,9 @@ class PenjualanRepository
     {
         return $penjualan->update($data);
     }
+
+    public function delete(Penjualan $penjualan)
+    {
+        return $penjualan->delete();
+    }
 }

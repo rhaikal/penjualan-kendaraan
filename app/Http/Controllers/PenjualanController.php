@@ -51,4 +51,11 @@ class PenjualanController extends Controller
             return new PenjualanResource($penjualan, 'Berhasil mengubah penjualan');
         }else return response()->json(['message' => 'penjualan telah selesai']);
     }
+
+    public function destroy(Penjualan $penjualan)
+    {
+        $this->penjualanService->deletePenjualan($penjualan);
+
+        return response()->json(['message' => 'Berhasil menghapus penjualan']);
+    }
 }

@@ -287,6 +287,12 @@ jika metode penjualan = Kredit
   GET /api/penjualan
 ```
 
+###### Delete Penjualan
+
+```
+  DELETE /api/penjualan/{id}
+```
+
 #### Laporan
 ###### get All Laporan
 
