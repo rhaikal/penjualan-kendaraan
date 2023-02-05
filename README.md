@@ -7,60 +7,264 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About Project
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+REST API untuk penjualan kendaraan
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requirement
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+PHP 8
+Mongodb 4.2
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Clone the project
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+  git clone https://github.com/rhaikal/penjualan-kendaraan
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Navigate to the application directory
 
-## Laravel Sponsors
+```bash
+    cd penjualan-kendaraan
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Install composer dependencies
 
-### Premium Partners
+```bash
+  composer Install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Copy env.example
 
-## Contributing
+> Setting your database and email configuration
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+  cp .env-example .env
+```
 
-## Code of Conduct
+Generate application key
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+  php artisan key:generate
+```
 
-## Security Vulnerabilities
+Migrate and seed the database
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+  php artisan migrate --seed
+```
 
-## License
+Run the project
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+  php artisan serve
+```
+## API Reference
+
+Setiap request memerlukan token(authorization) yang didapat dari login/register
+| Header                    | Type     | Description                |
+| :------------------------ | :------- | :------------------------- |
+| `Authorization`           | `Bearer` | **Required**               |
+
+#### User
+###### Register
+
+```http
+  POST /api/auth/register
+```
+
+```
+    [
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'password' => [Password::required(), 'confirmed'],
+    ]
+```
+
+###### Login
+
+```http
+  POST /api/auth/login
+```
+
+
+```
+    [
+        'email' => 'required|email',
+        'password' => 'required|string',
+        'remember' => 'boolean'
+    ]
+```
+
+###### Get Data User
+
+```http
+  GET /api/auth/data
+```
+
+###### Refresh token
+
+```http
+  POST /api/auth/refresh
+```
+
+###### Logout
+
+```http
+  POST /api/auth/logout
+```
+
+#### Kendaraan
+###### Create new kendaraan
+
+```http
+  POST /api/kendaraan
+```
+
+```
+    [
+        'jenis' => 'required|in:mobil,motor',
+        'merek' => 'required|string',
+        'model' => 'required|string',
+        'tahun_keluaran' => 'required|numeric',
+        'warna' => 'required|string',
+        'harga' => 'required|integer',
+        'stock' => 'required|integer'
+    ]
+```
+
+- tambahan input
+
+jika jenis kendaraan = mobil
+```
+    [
+        'kapasitas_penumpang' => ['required', 'integer'],
+        'tipe' => ['required', Rule::in(['SUV', 'MPV', 'Crossover', 'Hatchback', 'Sedan', 'Sport Sedan', 'Convertible', 'Station Wagon', 'Off Road', 'Pickup Truck', 'Double Cabin', 'Elektrik', 'Hybrid', 'LCGC'])],
+        'mesin' =>  tipe == 'Elektrik' ? ['required', Rule::in(['BEV', 'PHEV', 'HEV', 'FCEV'])] :
+                                         ['required', Rule::in(['ICE', 'ECE'])],
+    ]
+```
+
+jika jenis kendaraan = motor
+```
+    [
+        'mesin' => ['required', Rule::in(['DOHC', 'SOHC', 'OHV'])],
+        'tipe_suspensi => ['required', Rule::in(['Pararel Fork', 'Plunger Rear Suspension',     'Telescopic Fork', 'Swing Arm Rear Suspension'])],
+        'tipe_transmisi => ['required', Rule::in(['Manual', 'Semi Otomatis', 'Otomatis]
+    ]
+```
+
+###### Update Kendaraan
+
+```http
+  PATCH /api/kendaraan/{id}
+```
+
+```
+    [
+        'merek' => 'sometimes|required|string',
+        'model' => 'sometimes|required|string',
+        'tahun_keluaran' => 'sometimes|required|numeric',
+        'warna' => 'sometimes|required|string',
+        'harga' => 'sometimes|required|integer',
+        'stock' => 'sometimes|required|integer'
+    ]
+```
+
+- tambahan input
+
+jika jenis kendaraan = mobil
+```
+    [
+        'kapasitas_penumpang' => ['sometimes', 'required', 'integer'],
+        'tipe' => ['sometimes', 'required', Rule::in(['SUV', 'MPV', 'Crossover', 'Hatchback', 'Sedan', 'Sport Sedan', 'Convertible', 'Station Wagon', 'Off Road', 'Pickup Truck', 'Double Cabin', 'Elektrik', 'Hybrid', 'LCGC'])],
+        'mesin' =>  tipe == 'Elektrik' ? ['sometimes', 'required', Rule::in(['BEV', 'PHEV', 'HEV', 'FCEV'])] :
+                                         ['sometimes', 'required', Rule::in(['ICE', 'ECE'])],
+    ]
+```
+
+jika jenis kendaraan = motor
+```
+    [
+        'mesin' => ['sometimes', 'required', Rule::in(['DOHC', 'SOHC', 'OHV'])],
+        'tipe_suspensi => ['sometimes', 'required', Rule::in(['Pararel Fork', 'Plunger Rear Suspension',     'Telescopic Fork', 'Swing Arm Rear Suspension'])],
+        'tipe_transmisi => ['sometimes', 'required', Rule::in(['Manual', 'Semi Otomatis', 'Otomatis]
+    ]
+```
+
+###### Get Data Kendaraan
+
+```http
+  GET /api/kendaraan
+```
+
+###### Get Specific Data Kendaraan
+
+```http
+  GET /api/kendaraan/{id}
+```
+
+###### Remove Kendaraan
+
+```http
+  DELETE /api/kendaraan/{id}
+```
+
+#### Penjualan
+###### Create Penjualan
+
+```http
+  POST /api/penjualan
+```
+
+```
+    [
+        'metode' => ['required', Rule::in(['Cash', 'Kredit'])],
+        'booking_fee' => ['required', 'integer'],
+        'dp' => ['required', 'integer', 'min:1', 'max:99'],
+        'kendaraan.id' => ['required', 'exists:kendaraans,_id'],
+        'kendaraan.atas_nama' => ['required', 'string'],
+        'kendaraan.otr' => ['required', Rule::in(['Off The Road', 'On The Road'])],
+        'pembeli' => ['required', 'array'],
+        'pembeli.nama' => ['required', 'string'],
+        'pembeli.no_ktp' => ['required', 'string', 'size:16'],
+        'pembeli.no_hp' => ['required', 'string'],
+        'pembeli.email' => ['required', 'email'],
+        'pembeli.alamat' => ['required', 'array'], // can have many addresses
+        'pembeli.alamat.*.jalan' => ['required', 'string'],
+        'pembeli.alamat.*.kelurahan' => ['required', 'string'],
+        'pembeli.alamat.*.kecamatan' => ['required', 'string'],
+        'pembeli.alamat.*.kota' => ['required', 'string'],
+        'pembeli.alamat.*.provinsi' => ['required', 'string'],
+        'pembeli.alamat.*.kode_pos' => ['required', 'digits_between:4,6'],
+        'pembeli.berkas.ktp' => ['required', 'boolean'],
+        'catatan' => ['sometimes', 'required', 'string'],
+        'diskon' => ['sometimes', 'required', 'integer', 'max:99', 'min:1'],
+    ]
+```
+
+- tambahan input
+
+jika metode penjualan = Kredit
+```
+    [
+        'provisi' => ['required', 'decimal:2'],
+        'asuransi.jenis' => ['required', Rule::in(['all risk', 'total loss only'])],
+        'asuransi.persentase' => ['required', 'decimal:2'],
+        'angsuran.jenis' => ['required', Rule::in(['ADDM', 'ADDB'])],
+        'angsuran.jangka_waktu' => ['required', 'integer', 'max:72'], // in month
+        'pembeli.berkas.kk' => ['required', 'boolean'],
+        'pembeli.berkas.npwp' => ['required', 'boolean'],
+        'pembeli.berkas.bukti_kontrak_rumah' => ['sometimes', 'required', 'boolean'],
+        'pembeli.berkas.bukti_kepemilikan_rumah' => ['sometimes', 'required', 'boolean'],
+        'pembeli.berkas.rekening_koran' => ['required', 'boolean'],
+    ]
+```
+
+###### Get All Data Penjualan
+
+```http
+  GET /api/penjualan
+```
