@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KendaraanController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PenjualanController;
 
 /*
@@ -32,4 +33,8 @@ Route::middleware('auth:api')->group(function() {
     Route::apiResource('kendaraan', KendaraanController::class);
 
     Route::apiResource('penjualan', PenjualanController::class);
+
+    Route::get('laporan/penjualan', [LaporanController::class, 'all'])->name('laporan.penjualan');
+    Route::get('laporan/penjualan-mobil', [LaporanController::class, 'cars'])->name('laporan.penjualan.cars');
+    Route::get('laporan/penjualan-motor', [LaporanController::class, 'motorcycles'])->name('laporan.penjualan.motorcycles');
 });
