@@ -24,6 +24,7 @@ class KendaraanResource extends JsonResource
     public function toArray($request)
     {
         $data = [
+            '_id' => $this->id,
             'jenis' => $this->jenis,
             'merek' => $this->merek,
             'model' => $this->model,
@@ -52,7 +53,7 @@ class KendaraanResource extends JsonResource
             return [
                 'message' => $this->message,
                 'data' => [
-                    `kendaraan` => $data
+                    'kendaraan' => $data,
                 ]
             ];
         }
