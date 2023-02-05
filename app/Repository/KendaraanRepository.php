@@ -6,6 +6,11 @@ use App\Models\Kendaraan;
 
 class KendaraanRepository
 {
+    public function getById($id)
+    {
+        return Kendaraan::find($id);
+    }
+
     public function paginate($paginate)
     {
         return Kendaraan::paginate($paginate);

@@ -30,4 +30,9 @@ class Kendaraan extends Model
         'kapasitas_penumpang',
         'tipe'
    ];
+
+   public function penjualans()
+    {
+        return $this->hasMany(Penjualan::class, 'kendaraan.id');
+    }
 }
