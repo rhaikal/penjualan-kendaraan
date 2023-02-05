@@ -62,7 +62,7 @@ class PenjualanService
                 $processedData['biaya']['harga_kendaraan']['total'] = $biayaBbnkb + $biayaPkb + $biayaBiroJasa + $biayaStck + $biayaTnkb + $biayaStnk + $biayaBpkb + $biayaSwdkllj;
             } else $processedData['biaya']['harga_kendaraan']['total'] = $kendaraan->harga;
 
-            if(!!$data['diskon']) {
+            if(isset($data['diskon'])) {
                 $processedData['biaya']['harga_kendaraan'] = array_merge($processedData['biaya']['harga_kendaraan'], [
                     'diskon' => $data['diskon'],
                     'total' => $this->percentageMultiplicationAssignment($processedData['biaya']['harga_kendaraan']['total'], $data['diskon'])
