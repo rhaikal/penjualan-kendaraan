@@ -38,7 +38,7 @@ Install composer dependencies
 
 Copy env.example
 
-> Setting your database and email configuration
+> Setting your database
 
 ```bash
   cp .env-example .env
@@ -71,7 +71,7 @@ Setiap request memerlukan token(authorization) yang didapat dari login/register
 #### User
 ###### Register
 
-```http
+```
   POST /api/auth/register
 ```
 
@@ -85,7 +85,7 @@ Setiap request memerlukan token(authorization) yang didapat dari login/register
 
 ###### Login
 
-```http
+```
   POST /api/auth/login
 ```
 
@@ -100,26 +100,26 @@ Setiap request memerlukan token(authorization) yang didapat dari login/register
 
 ###### Get Data User
 
-```http
+```
   GET /api/auth/data
 ```
 
 ###### Refresh token
 
-```http
+```
   POST /api/auth/refresh
 ```
 
 ###### Logout
 
-```http
+```
   POST /api/auth/logout
 ```
 
 #### Kendaraan
 ###### Create new kendaraan
 
-```http
+```
   POST /api/kendaraan
 ```
 
@@ -158,7 +158,7 @@ jika jenis kendaraan = motor
 
 ###### Update Kendaraan
 
-```http
+```
   PATCH /api/kendaraan/{id}
 ```
 
@@ -196,26 +196,26 @@ jika jenis kendaraan = motor
 
 ###### Get Data Kendaraan
 
-```http
+```
   GET /api/kendaraan
 ```
 
 ###### Get Specific Data Kendaraan
 
-```http
+```
   GET /api/kendaraan/{id}
 ```
 
 ###### Remove Kendaraan
 
-```http
+```
   DELETE /api/kendaraan/{id}
 ```
 
 #### Penjualan
 ###### Create Penjualan
 
-```http
+```
   POST /api/penjualan
 ```
 
@@ -265,6 +265,25 @@ jika metode penjualan = Kredit
 
 ###### Get All Data Penjualan
 
-```http
+```
   GET /api/penjualan
+```
+
+#### Laporan
+###### get All Laporan
+
+```
+  GET /api/laporan/penjualan
+```
+
+###### Get Laporan Mobil
+
+```
+  GET /api/penjualan-mobil
+```
+
+###### Get Laporan Motor
+
+```
+  GET /api/penjualan-mobil
 ```
