@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePenjualanRequest;
-use App\Http\Resources\PenjualanResource;
-use App\Services\PenjualanService;
+use App\Models\Penjualan;
 use Illuminate\Http\Request;
+use App\Services\PenjualanService;
+use App\Http\Resources\PenjualanResource;
+use App\Http\Requests\StorePenjualanRequest;
 
 class PenjualanController extends Controller
 {
@@ -21,6 +22,11 @@ class PenjualanController extends Controller
         $penjualan = $this->penjualanService->getPenjualan(10);
 
         return PenjualanResource::collection($penjualan);
+    }
+
+    public function show(Penjualan $penjualan)
+    {
+        return new PenjualanResource($penjualan, 'Berhasil mendapatkan data penjualan');
     }
 
     public function store(StorePenjualanRequest $request)

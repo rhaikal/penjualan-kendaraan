@@ -269,6 +269,12 @@ jika metode penjualan = Kredit
   GET /api/penjualan
 ```
 
+###### Get Specific Data Penjualan
+
+```
+  GET /api/penjualan
+```
+
 #### Laporan
 ###### get All Laporan
 

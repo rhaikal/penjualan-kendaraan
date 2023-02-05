@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Kendaraan;
+use App\Models\Penjualan;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -86,5 +87,19 @@ class PenjualanTest extends TestCase
         $user = User::latest()->first();
         $response = $this->withHeaders($this->headers)->actingAs($user)->getJson(route('penjualan.index'));
         $response->assertStatus(200);
+    }
+
+    /**
+     * A see specific sale data feature.
+     *
+     * @return void
+     */
+    public function test_can_see_specific_sale_data()
+    {
+        $penjualan = Penjualan::latest()->first();
+        $user = User::latest()->first();
+        $response = $this->withHeaders($this->headers)->actingAs($user)->getJson(route('penjualan.show', $penjualan));
+        $response->assertStatus(200);
+        $response->assertJson(['message' => 'Berhasil mendapatkan data penjualan']);
     }
 }
