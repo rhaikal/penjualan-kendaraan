@@ -16,6 +16,11 @@ class PenjualanService
         $this->kendaraanRepository = $kendaraanRepository;
     }
 
+    public function getPenjualan(int $paginate)
+    {
+        return $this->penjualanRepository->paginate(10);
+    }
+
     public function createPenjualan(array $data)
     {
         $kendaraan = $this->kendaraanRepository->getById($data['kendaraan']['id']);

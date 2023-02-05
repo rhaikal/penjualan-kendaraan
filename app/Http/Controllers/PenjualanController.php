@@ -16,6 +16,13 @@ class PenjualanController extends Controller
         $this->penjualanService = $penjualanService;
     }
 
+    public function index()
+    {
+        $penjualan = $this->penjualanService->getPenjualan(10);
+
+        return PenjualanResource::collection($penjualan);
+    }
+
     public function store(StorePenjualanRequest $request)
     {
         $validatedData = $request->validated();

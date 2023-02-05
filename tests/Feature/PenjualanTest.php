@@ -75,4 +75,17 @@ class PenjualanTest extends TestCase
         $response->assertStatus(201);
         $response->assertJson(['message' => 'Berhasil menambahkan penjualan']);
     }
+
+    /**
+     * A see sales data feature.
+     *
+     * @return void
+     */
+    public function test_can_see_sales_data()
+    {
+        $user = User::latest()->first();
+        $response = $this->withHeaders($this->headers)->actingAs($user)->getJson(route('penjualan.index'));
+        $response->dd();
+        $response->assertStatus(200);
+    }
 }
