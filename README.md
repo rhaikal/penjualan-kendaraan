@@ -58,6 +58,8 @@ Migrate and seed the database
 
 Run the project
 
+> Import postman
+
 ```bash
   php artisan serve
 ```

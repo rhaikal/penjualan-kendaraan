@@ -1,0 +1,1041 @@
+{
+	"info": {
+		"_postman_id": "8ab43bf9-0391-4ed9-b7c2-e9dcd733cab0",
+		"name": "Penjualan Kendaraan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21830297"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Ricko Haikal",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ricko@inosoft.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "ricko123",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "ricko123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ricko@inosoft.com\",\r\n    \"password\": \"ricko123\",\r\n    \"remember\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/data",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/refresh",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Laporan",
+			"item": [
+				{
+					"name": "Semua Kendaraan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/laporan/penjualan",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"laporan",
+								"penjualan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kendaraan Mobil",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/laporan/penjualan-mobil",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"laporan",
+								"penjualan-mobil"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kendaraan Motor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/laporan/penjualan-motor",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"laporan",
+								"penjualan-motor"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kendaraan",
+			"item": [
+				{
+					"name": "Get All Kendaraan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/kendaraan",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"kendaraan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get  Detail Kendaraan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/kendaraan/{id}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"kendaraan",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Kendaraan Mobil",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "jenis",
+									"value": "mobil",
+									"type": "text"
+								},
+								{
+									"key": "merek",
+									"value": "Honda",
+									"type": "text"
+								},
+								{
+									"key": "model",
+									"value": "Brio",
+									"type": "text"
+								},
+								{
+									"key": "tahun_keluaran",
+									"value": "2023",
+									"type": "text"
+								},
+								{
+									"key": "warna",
+									"value": "putih",
+									"type": "text"
+								},
+								{
+									"key": "harga",
+									"value": "159000000",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "kapasitas_penumpang",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "tipe",
+									"value": "Hatchback",
+									"type": "text"
+								},
+								{
+									"key": "mesin",
+									"value": "ICE",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/kendaraan",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"kendaraan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Kendaraan Motor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "jenis",
+									"value": "motor",
+									"type": "text"
+								},
+								{
+									"key": "merek",
+									"value": "Suzuki",
+									"type": "text"
+								},
+								{
+									"key": "model",
+									"value": "Satria",
+									"type": "text"
+								},
+								{
+									"key": "tahun_keluaran",
+									"value": "2022",
+									"type": "text"
+								},
+								{
+									"key": "warna",
+									"value": "hitam",
+									"type": "text"
+								},
+								{
+									"key": "harga",
+									"value": "26000000",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "80",
+									"type": "text"
+								},
+								{
+									"key": "mesin",
+									"value": "DOHC",
+									"type": "text"
+								},
+								{
+									"key": "tipe_suspensi",
+									"value": "Telescopic Fork",
+									"type": "text"
+								},
+								{
+									"key": "tipe_transmisi",
+									"value": "Semi Otomatis",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/kendaraan",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"kendaraan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Kendaraan Stock",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "stock",
+									"value": "50",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/kendaraan/{id}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"kendaraan",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Kendaraan Typo",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "merek",
+									"value": "Yamaha",
+									"type": "text"
+								},
+								{
+									"key": "model",
+									"value": "Mio",
+									"type": "text"
+								},
+								{
+									"key": "warna",
+									"value": "merah",
+									"type": "text"
+								},
+								{
+									"key": "tahun_keluaran",
+									"value": "2007",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/kendaraan/{id}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"kendaraan",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Menghapus Kendaraan",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/kendaraan/{id}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"kendaraan",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Penjualan",
+			"item": [
+				{
+					"name": "Create Penjualan Cash",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "metode",
+									"value": "Cash",
+									"type": "text"
+								},
+								{
+									"key": "booking_fee",
+									"value": "500000",
+									"type": "text"
+								},
+								{
+									"key": "dp",
+									"value": "30",
+									"type": "text"
+								},
+								{
+									"key": "kendaraan[id]",
+									"value": "{id}",
+									"type": "text"
+								},
+								{
+									"key": "kendaraan[atas_nama]",
+									"value": "Ricko Haikal",
+									"type": "text"
+								},
+								{
+									"key": "kendaraan[otr]",
+									"value": "On The Road",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[nama]",
+									"value": "Ricko Haikal",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[no_ktp]",
+									"value": "1234567898765432",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[no_hp]",
+									"value": "02213123123325",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[email]",
+									"value": "ricko@inosoft.com",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[alamat][0][jalan]",
+									"value": "jalan",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[alamat][0][kelurahan]",
+									"value": "kelurahan",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[alamat][0][kecamatan]",
+									"value": "kecamatan",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[alamat][0][kota]",
+									"value": "kota",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[alamat][0][provinsi]",
+									"value": "provinsi",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[alamat][0][kode_pos]",
+									"value": "08213",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[berkas][ktp]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "catatan",
+									"value": "catatan",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/penjualan",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"penjualan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Penjualan Kredit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "metode",
+									"value": "Kredit",
+									"type": "text"
+								},
+								{
+									"key": "booking_fee",
+									"value": "5000000",
+									"type": "text"
+								},
+								{
+									"key": "dp",
+									"value": "25",
+									"type": "text"
+								},
+								{
+									"key": "kendaraan[id]",
+									"value": "{id}",
+									"type": "text"
+								},
+								{
+									"key": "kendaraan[atas_nama]",
+									"value": "Ricko Haikal",
+									"type": "text"
+								},
+								{
+									"key": "kendaraan[otr]",
+									"value": "On The Road",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[nama]",
+									"value": "Ricko Haikal",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[no_ktp]",
+									"value": "1234567898765432",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[no_hp]",
+									"value": "02213123123325",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[email]",
+									"value": "ricko@inosoft.com",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[alamat][0][jalan]",
+									"value": "jalan",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[alamat][0][kelurahan]",
+									"value": "kelurahan",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[alamat][0][kecamatan]",
+									"value": "kecamatan",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[alamat][0][kota]",
+									"value": "kota",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[alamat][0][provinsi]",
+									"value": "provinsi",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[alamat][0][kode_pos]",
+									"value": "08213",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[berkas][ktp]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "catatan",
+									"value": "catatan",
+									"type": "text"
+								},
+								{
+									"key": "provisi",
+									"value": "0.64",
+									"type": "text"
+								},
+								{
+									"key": "asuransi[jenis]",
+									"value": "all risk",
+									"type": "text"
+								},
+								{
+									"key": "asuransi[persentase]",
+									"value": "3.23",
+									"type": "text"
+								},
+								{
+									"key": "angsuran[jenis]",
+									"value": "ADDB",
+									"type": "text"
+								},
+								{
+									"key": "angsuran[jangka_waktu]",
+									"value": "36",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[berkas][kk]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[berkas][npwp]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[berkas][bukti_kontrak_rumah]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[berkas][bukti_kepemilikan_rumah]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "pembeli[berkas][rekening_koran]",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/penjualan",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"penjualan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Penjualan",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "status",
+									"value": "selesai",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/penjualan/{id}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"penjualan",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Penjualan",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "status",
+									"value": "selesai",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/penjualan/63df8e80714e2ca23c0f8f93",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"penjualan",
+								"63df8e80714e2ca23c0f8f93"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Penjualan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/penjualan",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"penjualan"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE2NzU2MTU4MjEsImV4cCI6MTY3NTYxOTQyMSwibmJmIjoxNjc1NjE1ODIxLCJqdGkiOiJIUmRldHozSEoxZXJOQk5uIiwic3ViIjoiNjNkZjhlMTk4NTg3ZmU5ZGY3MGRmYWIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.pw0O0_Yf0gEnxkNXtRDkwnpARkK82cOm-eD0FJosedU",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
