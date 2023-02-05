@@ -23,10 +23,14 @@ class PenjualanResource extends JsonResource
      */
     public function toArray($request)
     {
+        $data = [
+            '_id' => $this->_id,
+            'status' => $this->status,
+            'metode' => $this->metode,
+        ];
+
         if(request()->routeIs('penjualan.index')){
-            $data = [
-                'status' => $this->status,
-                'metode' => $this->metode,
+            $data = array_merge($data, [
                 'kendaraan' => [
                     'jenis' => $this->kendaraanDetail->jenis,
                     'merek' => $this->kendaraanDetail->merek,
@@ -37,7 +41,7 @@ class PenjualanResource extends JsonResource
                     'harga_kendaraan' => $this->biaya['harga_kendaraan']['total'],
                     'dp' => $this->biaya['dp']['total'],
                 ]
-            ];
+            ]);
 
             if($this->metode == 'Kredit')
                 $data['biaya']['angsuran'] = [
@@ -46,17 +50,18 @@ class PenjualanResource extends JsonResource
                 ];
 
             return $data;
-        }
-
-        return [
-            'message' => $this->message,
-            'data' => [
-                'status' => $this->status,
-                'metode' => $this->metode,
+        } else
+            $data = array_merge($data, [
                 'kendaraan' => $this->kendaraan,
                 'pembeli' => $this->pembeli,
                 'biaya' => $this->biaya,
                 'catatan' => $this->catatan,
+            ]);
+
+        return [
+            'message' => $this->message,
+            'data' => [
+                'penjualan' => $data
             ]
         ];
     }
