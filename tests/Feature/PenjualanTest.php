@@ -85,7 +85,6 @@ class PenjualanTest extends TestCase
     {
         $user = User::latest()->first();
         $response = $this->withHeaders($this->headers)->actingAs($user)->getJson(route('penjualan.index'));
-        $response->dd();
         $response->assertStatus(200);
     }
 }
