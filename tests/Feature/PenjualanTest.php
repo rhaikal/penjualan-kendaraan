@@ -102,4 +102,18 @@ class PenjualanTest extends TestCase
         $response->assertStatus(200);
         $response->assertJson(['message' => 'Berhasil mendapatkan data penjualan']);
     }
+
+    /**
+     * A update status sale feature.
+     *
+     * @return void
+     */
+    public function test_can_update_status_sale()
+    {
+        $penjualan = Penjualan::where('status', 'proses')->latest()->first();
+        $user = User::latest()->first();
+        $response = $this->withHeaders($this->headers)->actingAs($user)->patchJson(route('penjualan.update', $penjualan), ['status' => 'selesai']);
+        $response->assertStatus(200);
+        $response->assertJson(['message' => 'Berhasil mengubah penjualan']);
+    }
 }

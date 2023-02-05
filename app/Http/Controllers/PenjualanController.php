@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Services\PenjualanService;
 use App\Http\Resources\PenjualanResource;
 use App\Http\Requests\StorePenjualanRequest;
+use App\Http\Requests\UpdatePenjualanRequest;
 
 class PenjualanController extends Controller
 {
@@ -38,5 +39,16 @@ class PenjualanController extends Controller
         if(!!$penjualan){
             return new PenjualanResource($penjualan, 'Berhasil menambahkan penjualan');
         } return response()->json(['message' => 'Stock kendaraan habis']);
+    }
+
+    public function update(UpdatePenjualanRequest $request, Penjualan $penjualan)
+    {
+        if($penjualan->status == 'proses'){
+            $validatedData = $request->validated();
+
+            $this->penjualanService->updatePenjualan($penjualan, $validatedData);
+
+            return new PenjualanResource($penjualan, 'Berhasil mengubah penjualan');
+        }else return response()->json(['message' => 'penjualan telah selesai']);
     }
 }

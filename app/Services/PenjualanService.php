@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Penjualan;
 use App\Repository\KendaraanRepository;
 use App\Repository\PenjualanRepository;
 
@@ -104,6 +105,11 @@ class PenjualanService
 
             return $this->penjualanRepository->create($processedData);
         } return null;
+    }
+
+    public function updatePenjualan(Penjualan $penjualan, array $data)
+    {
+        return $this->penjualanRepository->update($penjualan, $data);
     }
 
     public function percentageMultiplicationAssignment($number, $percentage)

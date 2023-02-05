@@ -15,4 +15,9 @@ class PenjualanRepository
     {
         return Penjualan::create($data);
     }
+
+    public function update(Penjualan $penjualan, array $data)
+    {
+        return $penjualan->update($data);
+    }
 }

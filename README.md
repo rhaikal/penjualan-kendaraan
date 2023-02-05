@@ -263,6 +263,18 @@ jika metode penjualan = Kredit
     ]
 ```
 
+###### Update Penjualan
+
+```
+  PATCH /api/penjualan/{id}
+```
+
+```
+    [
+        'status' => 'required|in:selesai',
+    ]
+```
+
 ###### Get All Data Penjualan
 
 ```
