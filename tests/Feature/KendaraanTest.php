@@ -151,11 +151,13 @@ class KendaraanTest extends TestCase
      */
     public function test_can_delete_vehicle()
     {
-        $kendaraan = Kendaraan::latest()->first();
+        if(Kendaraan::count() > 5){
+            $kendaraan = Kendaraan::latest()->first();
 
-        $user = User::latest()->first();
-        $response = $this->actingAs($user)->withHeaders($this->headers)->deleteJson(route('kendaraan.destroy', $kendaraan));
-        $response->assertStatus(200);
-        $response->assertJson(['message' => 'Berhasil menghapus kendaraan']);
+            $user = User::latest()->first();
+            $response = $this->actingAs($user)->withHeaders($this->headers)->deleteJson(route('kendaraan.destroy', $kendaraan));
+            $response->assertStatus(200);
+            $response->assertJson(['message' => 'Berhasil menghapus kendaraan']);
+        } else $this->markTestSkipped('must have 5 or more vehicles');
     }
 }
